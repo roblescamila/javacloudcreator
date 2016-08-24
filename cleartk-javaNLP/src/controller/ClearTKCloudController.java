@@ -1,4 +1,4 @@
-package main.cleartk;
+package controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Vector;
 import java.util.concurrent.CountDownLatch;
+
+import model.ClearTKProcessor;
+import model.NLPAnalyzer;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.uima.UIMAException;

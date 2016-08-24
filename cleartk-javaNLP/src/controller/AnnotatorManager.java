@@ -1,4 +1,4 @@
-package main.cleartk;
+package controller;
 
 public interface AnnotatorManager {
 

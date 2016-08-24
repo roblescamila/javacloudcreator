@@ -1,4 +1,4 @@
-package main.cleartk;
+package model;
 
 import java.io.IOException;
 

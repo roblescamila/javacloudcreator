@@ -1,4 +1,4 @@
-package main.cleartk;
+package view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -154,11 +154,32 @@ public class FilterWordDialog extends JFrame {
 	public FilterWordDialog() throws IOException {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 406, 517);
+		setLocationRelativeTo(getParent());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		filteredWords = new Vector<String>();
+
+		filteredWords.add(";");
+		filteredWords.add("(");
+		filteredWords.add(")");
+		filteredWords.add("*");
+		filteredWords.add("+");
+		filteredWords.add("-");
+		filteredWords.add("/");
+		filteredWords.add(",");
+		filteredWords.add(".");
+		filteredWords.add("&");
+		filteredWords.add("|");
+		filteredWords.add("=");
+		filteredWords.add(">");
+		filteredWords.add("<");
+		filteredWords.add("\"");
+		filteredWords.add("{");
+		filteredWords.add("}");
+		filteredWords.add(":");
+
 		JScrollPane scrollPane = new JScrollPane();
 		initReservedWords();
 		@SuppressWarnings("rawtypes")
@@ -196,16 +217,14 @@ public class FilterWordDialog extends JFrame {
 			}
 		});
 
-		
-		
+
 		JButton btnRemoveWord = new JButton("Remove");
 		btnRemoveWord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (list.getSelectedIndices().length > 0) {
 					int[] tmp = list.getSelectedIndices();
 					int[] selectedIndices = list.getSelectedIndices();
-					for (int i = tmp.length - 1; i >= 0; i--) {
-						selectedIndices = list.getSelectedIndices();
+					for (int i = tmp.length -1; i >= 0; i--) {
 						if (removeWord(wordsModel.elementAt(i).toString())) {
 							wordsModel.removeElementAt(selectedIndices[i]);
 						}

@@ -1,4 +1,4 @@
-package main.cleartk;
+package view;
 
 import java.io.File;
 

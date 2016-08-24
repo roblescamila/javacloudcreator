@@ -1,4 +1,4 @@
-package main.cleartk;
+package controller;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;

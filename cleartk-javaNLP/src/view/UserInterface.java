@@ -1,4 +1,4 @@
-package main.cleartk;
+package view;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -55,6 +55,9 @@ import org.apache.uima.util.InvalidXMLException;
 import org.mcavallo.opencloud.Cloud;
 import org.mcavallo.opencloud.Tag;
 import org.xml.sax.SAXException;
+
+import controller.ClearTKCloudController;
+import controller.CloudController;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
