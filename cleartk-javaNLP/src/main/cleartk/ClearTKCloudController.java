@@ -44,7 +44,7 @@ public class ClearTKCloudController implements CloudController {
 
 		if (selected.get("Classes")) {
 			AnnotatorManager a = new SimpleCTKRutaAnnotatorManager(
-					"uima.ruta.annotators.ClassName", jcas, c);
+					"uima.ruta.annotators.ClassType", jcas, c);
 			a.addToCloud();
 		}
 

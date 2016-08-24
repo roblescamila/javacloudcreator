@@ -2,4 +2,13 @@ PACKAGE uima.ruta.annotators;
 
 TYPESYSTEM types.JavaTypeSystem;
 
-CW*{-NEAR(SW, 0, 1, false) -> MARKONCE(ClassType)};
+Document{-> RETAINTYPE(SPACE)};
+
+SPACE CW+{-NEAR(SW, 0, 1, false)-> MARK(ClassType)};
+
+ClassType{PARTOF(MultiLineComment)->UNMARK(ClassType)};
+ClassType{PARTOF(SingleLineComment)->UNMARK(ClassType)};
+ClassType{PARTOF(MethodName)->UNMARK(ClassType)};
+
+//ClassType{NEAR(SW,0,2,false)->UNMARK(ClassType)};
+//ClassType{NEAR(SW,0,3,false)->UNMARK(ClassType)};
