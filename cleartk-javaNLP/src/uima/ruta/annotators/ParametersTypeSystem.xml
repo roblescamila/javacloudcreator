@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.annotators.ParametersTypeSystem</name>
+    <imports>
+        <import name="org.apache.uima.ruta.engine.BasicTypeSystem"/>
+        <import name="uima.ruta.annotators.JavaTypeSystem"/>
+    </imports>
+    <types>
+        <typeDescription>
+            <name>uima.ruta.annotators.Parameters.InitParameters</name>
+            <description>Type defined in Parameters</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.annotators.Parameters.EndParameters</name>
+            <description>Type defined in Parameters</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+    </types>
+</typeSystemDescription>

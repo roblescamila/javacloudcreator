@@ -1,0 +1,4 @@
+classpath*:uima/ruta/annotators/*.xml
+classpath*:org/cleartk/**/*.xml
+classpath*:BasicTypeSystem.xml
+classpath*:InternalTypeSystem.xml

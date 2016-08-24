@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+	<name>JavaTypeSystem</name>
+	<description />
+	<version>1.0</version>
+	<vendor />
+	<types>
+		<typeDescription>
+			<name>uima.ruta.annotators.Java</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+			<features>
+				<featureDescription>
+					<name>parameters</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.Parameters</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>class</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.Class</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>methodheader</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.MethodHeader</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>javareservedwords</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.JavaReservedWords
+					</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>multilinecomment</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.MultiLineComment
+					</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>declaration</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.Declaration</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>classheader</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.ClassHeader</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>varname</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.VarName</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>methodname</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.MethodName</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>primitivetype</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.PrimitiveType</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>classtype</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.ClassType</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>package</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.Package</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>method</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.Method</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>import</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.Import</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>block</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.Block</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>accessmodifier</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.AccessModifier</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>classname</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.ClassName</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>inheritance</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.Inheritance</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>constructor</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.Constructor</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>implementation</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.Implementation</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>singlelinecomment</name>
+					<description />
+					<rangeTypeName>uima.ruta.annotators.SingleLineComment
+					</rangeTypeName>
+				</featureDescription>
+			</features>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.PrimitiveType</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.Package</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.Declaration</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.Method</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.Import</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.Block</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.AccessModifier</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.ClassName</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.Inheritance</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.ClassType</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.Implementation</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.SingleLineComment</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.VarName</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.Constructor</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.MultiLineComment</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.JavaReservedWords</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.Parameters</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.Class</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.MethodHeader</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.MethodName</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+		<typeDescription>
+			<name>uima.ruta.annotators.ClassHeader</name>
+			<description />
+			<supertypeName>uima.tcas.Annotation</supertypeName>
+		</typeDescription>
+	</types>
+</typeSystemDescription>

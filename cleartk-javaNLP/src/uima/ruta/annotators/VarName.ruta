@@ -1,0 +1,18 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+Document{-> RETAINTYPE(SPACE)};
+
+(SW CW*){-> MARK(VarName)};
+
+SW{AND(-IS(JavaReservedWords),-PARTOFNEQ(VarName))->MARK(VarName)};
+
+VarName{PARTOF(MultiLineComment)->UNMARK(VarName)};
+VarName{PARTOF(SingleLineComment)->UNMARK(VarName)};
+VarName{PARTOF(Import)->UNMARK(VarName)};
+VarName{PARTOF(Package)->UNMARK(VarName)};
+VarName{PARTOF(JavaReservedWords)->UNMARK(VarName)};
+
+VarName{NEAR(Parameters,0,2)->UNMARK(VarName)};
+VarName{NEAR(Parameters,0,3)->UNMARK(VarName)};

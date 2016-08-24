@@ -1,0 +1,5 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+CW*{-NEAR(SW, 0, 1, false) -> MARKONCE(ClassType)};

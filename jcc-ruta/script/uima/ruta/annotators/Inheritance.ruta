@@ -1,0 +1,5 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+W{REGEXP("extends")} CW*{-> MARK(Inheritance,1,2)};

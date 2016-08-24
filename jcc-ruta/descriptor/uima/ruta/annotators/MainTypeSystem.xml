@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.annotators.MainTypeSystem</name>
+    <imports>
+        <import location="../../../BasicTypeSystem.xml"/>
+        <import location="../../../types/JavaTypeSystem.xml"/>
+        <import location="PackageTypeSystem.xml"/>
+        <import location="MultiLineCommentTypeSystem.xml"/>
+        <import location="InheritanceTypeSystem.xml"/>
+        <import location="ConstructorTypeSystem.xml"/>
+        <import location="MethodNameTypeSystem.xml"/>
+        <import location="ClassTypeTypeSystem.xml"/>
+        <import location="AccessModifierTypeSystem.xml"/>
+        <import location="MethodHeaderTypeSystem.xml"/>
+        <import location="ClassTypeSystem.xml"/>
+        <import location="ImplementationTypeSystem.xml"/>
+        <import location="BlockTypeSystem.xml"/>
+        <import location="PrimitiveTypeTypeSystem.xml"/>
+        <import location="ClassHeaderTypeSystem.xml"/>
+        <import location="SingleLineCommentTypeSystem.xml"/>
+        <import location="ClassNameTypeSystem.xml"/>
+        <import location="ParametersTypeSystem.xml"/>
+        <import location="DeclarationTypeSystem.xml"/>
+        <import location="ImportTypeSystem.xml"/>
+        <import location="JavaReservedWordsTypeSystem.xml"/>
+        <import location="MethodTypeSystem.xml"/>
+        <import location="VarNameTypeSystem.xml"/>
+    </imports>
+</typeSystemDescription>

@@ -1,0 +1,7 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+WORDLIST TypeList = 'PrimitiveTypes.txt';
+
+Document{-> MARKFAST(PrimitiveType, TypeList)};

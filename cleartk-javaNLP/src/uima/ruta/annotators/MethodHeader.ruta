@@ -1,0 +1,15 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+DECLARE MethodType;
+
+JavaReservedWords{REGEXP("void")->MARK(MethodType)};
+
+//AccessModifier (PrimitiveType | MethodType | ClassType) MethodName Parameters{-> MARK(MethodHeader,1,4)};
+
+AccessModifier PrimitiveType MethodName Parameters{-> MARK(MethodHeader,1,4)};
+
+AccessModifier ClassType MethodName Parameters{-> MARK(MethodHeader,1,4)};
+
+AccessModifier MethodType MethodName Parameters{-> MARK(MethodHeader,1,4)};

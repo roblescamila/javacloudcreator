@@ -1,0 +1,19 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+DECLARE SubBlock, InitBlock, EndBlock;
+
+INT var, var2, var3,var4;
+
+"\\{" -> InitBlock;
+"\\}" -> EndBlock;
+
+InitBlock*? ANY*? EndBlock*?{-> MARK(Block, 1, 3)};
+
+//Block{AND(CURRENTCOUNT(InitBlock, var), CURRENTCOUNT(EndBlock, var, var, var2)) -> MARK(Block)};//bloque grande
+
+//Block{AND(PARTOF(Block),CURRENTCOUNT(InitBlock, var3), CURRENTCOUNT(EndBlock, var3, var3, var4)) -> MARK(SubBlock)};
+
+Block{AND(IS(EndBlock),-AFTER(EndBlock),AFTER(InitBlock))->MARK(SubBlock)};
+

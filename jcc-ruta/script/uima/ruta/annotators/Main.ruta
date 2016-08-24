@@ -1,0 +1,70 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+SCRIPT uima.ruta.annotators.Package;
+SCRIPT uima.ruta.annotators.Import;
+SCRIPT uima.ruta.annotators.SingleLineComment;
+SCRIPT uima.ruta.annotators.AccessModifier;
+SCRIPT uima.ruta.annotators.JavaReservedWords;
+//SCRIPT uima.ruta.annotators.PrimitiveType;
+SCRIPT uima.ruta.annotators.MultiLineComment;
+SCRIPT uima.ruta.annotators.Parameters;
+//SCRIPT uima.ruta.annotators.Implementation;
+//SCRIPT uima.ruta.annotators.Inheritance;
+SCRIPT uima.ruta.annotators.ClassType;
+SCRIPT uima.ruta.annotators.ClassName;
+//SCRIPT uima.ruta.annotators.ClassHeader;
+//SCRIPT uima.ruta.annotators.Declaration;
+//SCRIPT uima.ruta.annotators.Method;
+//SCRIPT uima.ruta.annotators.Block;
+SCRIPT uima.ruta.annotators.VarName;
+//SCRIPT uima.ruta.annotators.Class;
+//SCRIPT uima.ruta.annotators.MethodHeader;
+SCRIPT uima.ruta.annotators.MethodName;
+//SCRIPT uima.ruta.annotators.Constructor;
+
+Document{-> CALL(Package)};
+Document{-> CALL(Import)};
+Document{-> CALL(JavaReservedWords)};
+Document{-> CALL(AccessModifier)};
+//Document{-> CALL(PrimitiveType)};
+Document{-> CALL(SingleLineComment)};
+Document{-> CALL(MultiLineComment)};
+Document{-> CALL(ClassType)};
+Document{-> CALL(Parameters)};
+//Document{-> CALL(Implementation)};
+//Document{-> CALL(Inheritance)};
+Document{-> CALL(ClassName)};
+//Document{-> CALL(ClassHeader)};
+Document{-> CALL(VarName)};
+//Document{-> CALL(Block)};
+Document{-> CALL(MethodName)};
+//Document{-> CALL(MethodHeader)};
+//Document{-> CALL(Class)};
+//Document{-> CALL(Constructor)};
+//Document{-> CALL(Declaration)};
+//Document{-> CALL(Method)};
+Document{-> CREATE(Java, 
+//		"primitivetype" = PrimitiveType, 
+//		"constructor" = Constructor, 
+		"singlelinecomment" = SingleLineComment, 
+		"classtype" = ClassType, 
+//		"declaration" = Declaration, 
+		"package" = Package, 
+//		"method" = Method, 
+		"import" = Import, 
+//		"block" = Block, 
+		"classname" = ClassName, 
+		"methodname" = MethodName, 
+//		"inheritance" = Inheritance, 
+//		"implementation" = Implementation, 
+		"varname" = VarName, 
+//		"classheader" = ClassHeader, 
+		"javareservedwords" = JavaReservedWords, 
+		"multilinecomment" = MultiLineComment,
+//		, 
+		"parameters" = Parameters)}; 
+//		"class" = Class, 
+//		"methodheader" = MethodHeader, 
+//		"accessmodifier" = AccessModifier

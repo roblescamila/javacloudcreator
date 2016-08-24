@@ -1,0 +1,5 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+MethodHeader Block{-> MARK(Method,1,2)};

@@ -1,0 +1,7 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+WORDLIST ReservedWords = 'JavaReservedWords.txt';
+
+Document{-> MARKFAST(JavaReservedWords, ReservedWords)};

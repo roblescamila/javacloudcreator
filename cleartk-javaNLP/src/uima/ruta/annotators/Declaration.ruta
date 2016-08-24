@@ -1,0 +1,13 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+(AccessModifier? (PrimitiveType|ClassType) VarName (SPECIAL{REGEXP("=")})? (NUM|W)?){->MARK(Declaration)};
+
+//AccessModifier PrimitiveType VarName{->MARK(Declaration,1,3)};
+
+//AccessModifier ClassType VarName{->MARK(Declaration,1,3)};
+
+//PrimitiveType VarName{-PARTOFNEQ(Declaration)->MARK(Declaration)};
+
+//VarName(COMMA VarName)+{-> MARK(Declaration)};

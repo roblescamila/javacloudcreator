@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.annotators.ConstructorTypeSystem</name>
+    <imports>
+        <import location="../../../BasicTypeSystem.xml"/>
+        <import location="../../../types/JavaTypeSystem.xml"/>
+    </imports>
+    <types>
+        <typeDescription>
+            <name>uima.ruta.annotators.Constructor.ConstructorName</name>
+            <description>Type defined in uima.ruta.annotators.Constructor</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+    </types>
+</typeSystemDescription>

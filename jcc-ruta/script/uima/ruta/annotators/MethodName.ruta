@@ -1,0 +1,15 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+Document{-> RETAINTYPE(SPACE)};
+
+(SW CW*){BEFORE(Parameters)-> MARK(MethodName)};
+
+MethodName{OR(PARTOF(Parameters),PARTOF(VarName))->UNMARK(MethodName)};
+
+MethodName{PARTOF(SingleLineComment)->UNMARK(MethodName)};
+MethodName{PARTOF(MultiLineComment)->UNMARK(MethodName)};
+MethodName{PARTOF(JavaReservedWords)->UNMARK(MethodName)};
+MethodName{PARTOF(Import)->UNMARK(MethodName)};
+MethodName{PARTOF(Package)->UNMARK(MethodName)};

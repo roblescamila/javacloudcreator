@@ -1,0 +1,5 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+(W{REGEXP("class")} ClassType){->MARK(ClassName,1,2)};

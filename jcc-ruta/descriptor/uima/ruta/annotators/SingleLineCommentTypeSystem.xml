@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.annotators.SingleLineCommentTypeSystem</name>
+    <imports>
+        <import location="../../../BasicTypeSystem.xml"/>
+        <import location="../../../types/JavaTypeSystem.xml"/>
+    </imports>
+    <types>
+        <typeDescription>
+            <name>uima.ruta.annotators.SingleLineComment.InitComment</name>
+            <description>Type defined in uima.ruta.annotators.SingleLineComment</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+    </types>
+</typeSystemDescription>
