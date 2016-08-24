@@ -7,6 +7,5 @@ import org.apache.uima.jcas.JCas;
 
 public interface NLPAnalyzer {
 
-	
 	public abstract JCas executeNLP() throws UIMAException, IOException;
 }

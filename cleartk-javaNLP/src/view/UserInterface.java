@@ -25,7 +25,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.Box;
 import javax.swing.JRadioButton;
@@ -84,6 +83,8 @@ public class UserInterface extends JFrame {
 	private MyFile projectFile;
 	private static UserInterface frame;
 	private FilterWordDialog fwd;
+	private JSpinner spinner = new JSpinner();
+	private JPanel panel = new JPanel();
 
 	/**
 	 * Launch the application.
@@ -118,8 +119,12 @@ public class UserInterface extends JFrame {
 			l.setBackground(Color.BLACK);
 		}
 	}
+	public JSpinner getSipner()
+	{
+		return spinner;
+	}
 
-	private void paintCloud(JPanel panel, JSpinner spinner) throws IOException {
+	public void paintCloud() throws IOException {
 		panel.removeAll();
 		panel.repaint();
 		int i = 0;
@@ -128,6 +133,25 @@ public class UserInterface extends JFrame {
 		for (Tag a : cloud.tags()) {
 			aux.addTag(a);
 		}
+		
+		filteredWords.add("\"");
+		filteredWords.add("/");
+		filteredWords.add("{");
+		filteredWords.add("}");
+		filteredWords.add("-");
+		filteredWords.add("+");
+		filteredWords.add("*");
+		filteredWords.add("&");
+		filteredWords.add("|");
+		filteredWords.add(">");
+		filteredWords.add("<");
+		filteredWords.add("=");
+		filteredWords.add("[");
+		filteredWords.add("]");
+		filteredWords.add("!");
+		filteredWords.add(":");
+		filteredWords.add(";");
+
 		for (String remove : filteredWords) {
 			aux.removeTag(remove);
 		}
@@ -212,7 +236,7 @@ public class UserInterface extends JFrame {
 		JMenu mnFile = new JMenu("Options");
 		menuBar.add(mnFile);
 		cloud = new Cloud();
-		fwd = new FilterWordDialog();
+		fwd = new FilterWordDialog(this);
 		final JFileChooser fc = new JFileChooser();
 		final JFileChooser fcs = new JFileChooser();
 		final JFrame openFileDialog = new JFrame("Select directory");
@@ -240,7 +264,7 @@ public class UserInterface extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		final JPanel panel = new JPanel();
+		
 		panel.setBackground(Color.white);
 		panel.setForeground(Color.DARK_GRAY);
 		final JScrollPane scrollPane = new JScrollPane();
@@ -452,7 +476,7 @@ public class UserInterface extends JFrame {
 		JLabel lblMinimunWordCount = new JLabel("Minimun word count");
 		panel_3.add(lblMinimunWordCount);
 
-		final JSpinner spinner = new JSpinner();
+		
 		spinner.setPreferredSize(new Dimension(45, 20));
 		panel_3.add(spinner);
 
@@ -503,7 +527,7 @@ public class UserInterface extends JFrame {
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				try {
-					paintCloud(panel, spinner);
+					paintCloud();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -513,7 +537,7 @@ public class UserInterface extends JFrame {
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				try {
-					paintCloud(panel, spinner);
+					paintCloud();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -548,7 +572,7 @@ public class UserInterface extends JFrame {
 					runBackgroundNlp(selected, wccs, barrier);
 					barrier.await();
 					createCloud(wccs, selected);
-					paintCloud(panel, spinner);
+					paintCloud();
 				} catch (CASException | InterruptedException e) {
 					e.printStackTrace();
 				} catch (UIMAException e) {
