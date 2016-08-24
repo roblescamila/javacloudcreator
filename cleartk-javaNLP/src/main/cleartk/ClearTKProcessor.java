@@ -39,7 +39,7 @@ import org.uimafit.util.JCasUtil;
 
 //import edu.stanford.nlp.pipeline.TokenizerAnnotator;
 
-public class ClearTKProcessor {
+public class ClearTKProcessor implements NLPAnalyzer {
 
 	private  String file;
 
@@ -51,7 +51,7 @@ public class ClearTKProcessor {
 
 	public static void main(String[] args) throws UIMAException, IOException {
 		ClearTKProcessor a = new ClearTKProcessor("//MatiPrado \n //mati ");
-		a.executeClearTK();
+		a.executeNLP();
 	}
 public String[] getTypeSystemDescriptor()
 
@@ -86,15 +86,18 @@ public Vector<AnalysisEngine> getPipeline() throws InvalidXMLException, Resource
 	 aux.add(AnalysisEngineFactory.createEngine(SentenceAnnotator.getDescription()));
 	 aux.add(AnalysisEngineFactory.createEngine(TokenAnnotator.getDescription()));
 	 aux.add(AnalysisEngineFactory.createEngine(PosTaggerAnnotator.getDescription()));
+	// aux.add(AnalysisEngineFactory.createEngine(DefaultSnowballStemmer.getDescription("English")));
 	 aux.add(AnalysisEngineFactory.createEngine(LemmaAnnotator.getDescription()));
-	 aux.add(AnalysisEngineFactory.createEngine(DefaultSnowballStemmer.getDescription("English")));
+	
 //	aux.add(AnalysisEngineFactory.createEngine(TokenizerAnnotator.class));
+
+	 
 	return aux;
 	
 }
 
-public JCas executeClearTK() throws UIMAException, IOException {
-
+public JCas executeNLP() throws UIMAException, IOException {
+System.out.println("inicio");
 	String[] typeSystemDescriptor = this.getTypeSystemDescriptor();
 	JCas jCas = JCasFactory.createJCas(typeSystemDescriptor);
 	jCas.setDocumentText(file);

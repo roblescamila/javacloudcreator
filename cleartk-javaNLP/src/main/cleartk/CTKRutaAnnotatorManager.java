@@ -16,27 +16,27 @@ import org.cleartk.token.type.Token;
 import org.mcavallo.opencloud.Cloud;
 
 
-public class UimaRutaAnnotator {
+public abstract class CTKRutaAnnotatorManager implements AnnotatorManager{
 
 	// boolean selected;
-	String classPath;
+
 	JCas jcas;
 	Cloud cloud;
 
 	// path : "uima.ruta.annotators.MethodName"
-	public UimaRutaAnnotator(String path, JCas cas, Cloud c) {
-		classPath = path;
-		jcas = cas;
-		cloud = c;
-	}
 
-	public void addToCloud() throws CASException {
+	public abstract void addToCloud();
+	
+	
+	
+	protected void addToCloud(String classPath) throws CASException {
 		Type type = jcas.getTypeSystem().getType(classPath);
 	//	System.out.println(type.getName());
 		for (AnnotationFS annotation : CasUtil.select(jcas.getCas(), type)) {
 	//		System.out.println("tengo uan anotation");
 			for (Token token : JCasUtil.selectCovered(jcas, Token.class, annotation)) {
 	//System.out.println("Encontre: "+ token.getCoveredText()+ " lo tomo como "  +token.getLemma());
+			//	String aux2 = token.getStem();
 				String aux2 = token.getLemma();
 				String[] r2 = aux2.split("[.]");
 				for (String s : r2) {
@@ -52,4 +52,4 @@ public class UimaRutaAnnotator {
 			
 		} 
 	}
-}
+	}

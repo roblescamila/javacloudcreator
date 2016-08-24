@@ -62,6 +62,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Hashtable;
 import java.util.Vector;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
@@ -73,7 +74,7 @@ public class UserInterface extends JFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JSlider slider;
 	private static Vector<String> filteredWords;
-	private WordCloudCreator wcc;
+	private CloudController wcc;
 	private Cloud cloud;
 	private static Vector<String> files;
 	private JTree tree;
@@ -245,7 +246,7 @@ public class UserInterface extends JFrame {
 		JPanel panel_1 = new JPanel();
 		JPanel panel_3 = new JPanel();
 
-		final Vector<WordCloudCreator> wccs = new Vector<>();
+		final Vector<CloudController> wccs = new Vector<CloudController>();
 
 		mntmSaveCloud.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -531,10 +532,14 @@ public class UserInterface extends JFrame {
 				// protected Void doInBackground() throws UIMAException,
 				// SAXException {
 				//
-				boolean selected[] = { rdbtnComments.isSelected(),
-						rdbtnClasses.isSelected(), rdbtnMethod.isSelected(),
-						rdbtnVariables.isSelected(),
-						rdbtnPackages.isSelected(), rdbtnImports.isSelected() };
+		
+				Hashtable<String,Boolean> selected = new Hashtable<String,Boolean>();
+				selected.put("Comments",rdbtnComments.isSelected());
+				selected.put("Classes",rdbtnClasses.isSelected());
+				selected.put("Variables",rdbtnVariables.isSelected());
+				selected.put("Packages",rdbtnPackages.isSelected());
+				selected.put("Imports",rdbtnImports.isSelected());
+				selected.put("Methods",rdbtnMethod.isSelected());
 				try {
 					CountDownLatch barrier = new CountDownLatch(tree.getSelectionPaths().length);
 					runBackgroundNlp(selected, wccs, barrier);
@@ -570,17 +575,14 @@ public class UserInterface extends JFrame {
 		});
 	}
 
-	private boolean allFalse(boolean[] selected) {
-		for (Boolean a : selected) {
-			if (a) {
-				return false;
-			}
-		}
-		return true;
+	private boolean allFalse(Hashtable<String, Boolean> selected) {
+		boolean a = selected.containsValue(true);
+		return !a;
+		
 	}
 
-	private void runBackgroundNlp(boolean selected[],
-			Vector<WordCloudCreator> wccs, CountDownLatch barrier)
+	private void runBackgroundNlp(Hashtable<String, Boolean> selected,
+			Vector<CloudController> wccs, CountDownLatch barrier)
 			throws UIMAException, IOException {
 		TreePath[] tpVector = tree.getSelectionPaths();
 		if (!this.allFalse(selected)) {
@@ -588,7 +590,7 @@ public class UserInterface extends JFrame {
 			Executor pool = Executors.newFixedThreadPool(tpVector.length);
 			for (int i = 0; i < tpVector.length; i++) {
 				String f = createFilePath(tpVector[i]);
-				wcc = new WordCloudCreator(f, barrier);
+				wcc = new ClearTKCloudController(f, barrier);
 				wccs.add(wcc);
 				thobjects[i] = wcc;
 				pool.execute(thobjects[i]);
@@ -596,9 +598,9 @@ public class UserInterface extends JFrame {
 		}
 	}
 
-	private void createCloud(Vector<WordCloudCreator> wccs, boolean selected[])
+	private void createCloud(Vector<CloudController> wccs, Hashtable<String, Boolean> selected)
 			throws CASException, InterruptedException {
-		for (WordCloudCreator wc : wccs) {
+		for (CloudController wc : wccs) {
 			wc.updateCloud(selected, cloud);
 		}
 	}
