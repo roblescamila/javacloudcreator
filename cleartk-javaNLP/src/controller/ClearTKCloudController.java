@@ -39,7 +39,7 @@ public class ClearTKCloudController implements CloudController {
 			Vector<String> aux = new Vector<String>();
 			aux.add("uima.ruta.annotators.SingleLineComment");
 			aux.add("uima.ruta.annotators.MultiLineComment");
-			AnnotatorManager a = new ComposedClTKRutaAnnotatorManager(
+			AnnotatorManager a = new ComposedCTKRutaAnnotatorManager(
 					aux, jcas, c);
 					a.addToCloud();
 	

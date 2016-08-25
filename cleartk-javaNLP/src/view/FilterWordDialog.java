@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,7 +10,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
-import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Font;
@@ -24,8 +21,6 @@ import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,7 +30,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -49,7 +43,6 @@ public class FilterWordDialog extends JFrame {
 	private UserInterface myUserInterface;
 
 	public Vector<String> getFilteredWords() throws IOException {
-
 		Vector<String> aux = new Vector<String>();
 		if (rjw) {
 			for (String a : reservedWords) {
@@ -68,23 +61,16 @@ public class FilterWordDialog extends JFrame {
 		reservedWords = new Vector<String>();
 		File fichero = new File("JavaReservedWords.txt");
 		Scanner s = null;
-
 		try {
-			// Leemos el contenido del fichero
 			System.out.println("... Leemos el contenido del fichero ...");
 			s = new Scanner(fichero);
-
-			// Leemos linea a linea el fichero
 			while (s.hasNextLine()) {
-				String linea = s.nextLine(); // Guardamos la linea en un String
-				// fSystem.out.println(linea); // Imprimimos la linea
+				String linea = s.nextLine();
 				reservedWords.add(linea);
 			}
-
 		} catch (Exception ex) {
 			System.out.println("Mensaje: " + ex.getMessage());
 		} finally {
-			// Cerramos el fichero tanto si la lectura ha sido correcta o no
 			try {
 				if (s != null)
 					s.close();
@@ -92,17 +78,6 @@ public class FilterWordDialog extends JFrame {
 				System.out.println("Mensaje 2: " + ex2.getMessage());
 			}
 		}
-
-	}
-
-	private boolean removeWord(String w) {
-		for (int i = 0; i < filteredWords.size(); i++) {
-			if (filteredWords.elementAt(i).equals(w)) {
-				filteredWords.removeElementAt(i);
-				return true;
-			}
-		}
-		return false;
 	}
 
 	private File getSaveLocation() {
@@ -117,31 +92,6 @@ public class FilterWordDialog extends JFrame {
 			return null;
 		}
 	}
-
-	/**
-	 * Launch the application.
-	 * 
-	 * @throws UnsupportedLookAndFeelException
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
-	 * @throws ClassNotFoundException
-	 */
-	// public static void main(String[] args) throws ClassNotFoundException,
-	// InstantiationException, IllegalAccessException,
-	// UnsupportedLookAndFeelException {
-	// UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-	// EventQueue.invokeLater(new Runnable() {
-	// public void run() {
-	// try {
-	// FilterWordDialog frame = new FilterWordDialog();
-	// frame.setVisible(true);
-	//
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// });
-	// }
 
 	/**
 	 * Create the frame.
@@ -245,7 +195,6 @@ public class FilterWordDialog extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-
 			}
 		});
 
@@ -263,7 +212,6 @@ public class FilterWordDialog extends JFrame {
 				try {
 					myUserInterface.paintCloud();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

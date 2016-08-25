@@ -119,8 +119,8 @@ public class UserInterface extends JFrame {
 			l.setBackground(Color.BLACK);
 		}
 	}
-	public JSpinner getSipner()
-	{
+
+	public JSpinner getSipner() {
 		return spinner;
 	}
 
@@ -133,7 +133,7 @@ public class UserInterface extends JFrame {
 		for (Tag a : cloud.tags()) {
 			aux.addTag(a);
 		}
-		
+
 		filteredWords.add("\"");
 		filteredWords.add("/");
 		filteredWords.add("{");
@@ -264,7 +264,6 @@ public class UserInterface extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		
 		panel.setBackground(Color.white);
 		panel.setForeground(Color.DARK_GRAY);
 		final JScrollPane scrollPane = new JScrollPane();
@@ -300,13 +299,15 @@ public class UserInterface extends JFrame {
 
 		mntmOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.JAVA", "*.java");
+				FileNameExtensionFilter filtro = new FileNameExtensionFilter(
+						"*.JAVA", "*.java");
 				fc.setFileFilter(filtro);
 				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int selection = fc.showOpenDialog(openFileDialog);
 				fc.setMultiSelectionEnabled(true);
 				if (selection == JFileChooser.APPROVE_OPTION) {
-					projectFile = new MyFile(fc.getSelectedFile().getAbsolutePath());
+					projectFile = new MyFile(fc.getSelectedFile()
+							.getAbsolutePath());
 					tree = new JTree(addNodes(null, projectFile));
 					scrollPane.setViewportView(tree);
 					File a = fc.getSelectedFile();
@@ -476,7 +477,6 @@ public class UserInterface extends JFrame {
 		JLabel lblMinimunWordCount = new JLabel("Minimun word count");
 		panel_3.add(lblMinimunWordCount);
 
-		
 		spinner.setPreferredSize(new Dimension(45, 20));
 		panel_3.add(spinner);
 
@@ -559,16 +559,17 @@ public class UserInterface extends JFrame {
 				// protected Void doInBackground() throws UIMAException,
 				// SAXException {
 				//
-		
-				Hashtable<String,Boolean> selected = new Hashtable<String,Boolean>();
-				selected.put("Comments",rdbtnComments.isSelected());
-				selected.put("Classes",rdbtnClasses.isSelected());
-				selected.put("Variables",rdbtnVariables.isSelected());
-				selected.put("Packages",rdbtnPackages.isSelected());
-				selected.put("Imports",rdbtnImports.isSelected());
-				selected.put("Methods",rdbtnMethod.isSelected());
+
+				Hashtable<String, Boolean> selected = new Hashtable<String, Boolean>();
+				selected.put("Comments", rdbtnComments.isSelected());
+				selected.put("Classes", rdbtnClasses.isSelected());
+				selected.put("Variables", rdbtnVariables.isSelected());
+				selected.put("Packages", rdbtnPackages.isSelected());
+				selected.put("Imports", rdbtnImports.isSelected());
+				selected.put("Methods", rdbtnMethod.isSelected());
 				try {
-					CountDownLatch barrier = new CountDownLatch(tree.getSelectionPaths().length);
+					CountDownLatch barrier = new CountDownLatch(tree
+							.getSelectionPaths().length);
 					runBackgroundNlp(selected, wccs, barrier);
 					barrier.await();
 					createCloud(wccs, selected);
@@ -589,7 +590,8 @@ public class UserInterface extends JFrame {
 				// }
 				// };
 				// worker.execute();
-				// dialog.setVisible(true); // will block but with a responsive GUI
+				// dialog.setVisible(true); // will block but with a responsive
+				// GUI
 			}
 		});
 
@@ -605,7 +607,7 @@ public class UserInterface extends JFrame {
 	private boolean allFalse(Hashtable<String, Boolean> selected) {
 		boolean a = selected.containsValue(true);
 		return !a;
-		
+
 	}
 
 	private void runBackgroundNlp(Hashtable<String, Boolean> selected,
@@ -625,8 +627,9 @@ public class UserInterface extends JFrame {
 		}
 	}
 
-	private void createCloud(Vector<CloudController> wccs, Hashtable<String, Boolean> selected)
-			throws CASException, InterruptedException {
+	private void createCloud(Vector<CloudController> wccs,
+			Hashtable<String, Boolean> selected) throws CASException,
+			InterruptedException {
 		for (CloudController wc : wccs) {
 			wc.updateCloud(selected, cloud);
 		}
