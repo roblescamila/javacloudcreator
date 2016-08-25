@@ -169,7 +169,6 @@ public class UserInterface extends JFrame {
 		}
 		panel.revalidate();
 		panel.repaint();
-
 	}
 
 	private DefaultMutableTreeNode addNodes(DefaultMutableTreeNode curTop,
@@ -279,14 +278,10 @@ public class UserInterface extends JFrame {
 				FileNameExtensionFilter filtro = new FileNameExtensionFilter(
 						"*.PNG", "*.png");
 				fcs.setFileFilter(filtro);
-				// fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				BufferedImage image = createImage(panel);
 				String ruta;
-				// fc.showSaveDialog(frame3);
 				int seleccion = fcs.showSaveDialog(saveFileDialog);
-
 				if (seleccion == fcs.APPROVE_OPTION) {
-
 					File file = new File(fcs.getSelectedFile() + ".png");
 					try {
 						ImageIO.write(image, "png", file);

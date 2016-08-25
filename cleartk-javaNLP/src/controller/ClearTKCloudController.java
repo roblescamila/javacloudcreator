@@ -18,31 +18,26 @@ import org.mcavallo.opencloud.Cloud;
 
 public class ClearTKCloudController implements CloudController {
 
-
-	
 	CountDownLatch cdl = null;
 	JCas jcas;
 	FileInputStream fisTargetFile;
 
-	public ClearTKCloudController() {
-	}
+	public ClearTKCloudController() {}
 
-	public ClearTKCloudController(String f, CountDownLatch c) throws IOException,
-			UIMAException {
+	public ClearTKCloudController(String f, CountDownLatch c)
+			throws IOException, UIMAException {
 		fisTargetFile = new FileInputStream(new File(f));
 		this.cdl = c;
 	}
 
-	public Cloud updateCloud(Hashtable<String, Boolean> selected, Cloud c) throws CASException {
-
+	public Cloud updateCloud(Hashtable<String, Boolean> selected, Cloud c)
+			throws CASException {
 		if (selected.get("Comments")) {
 			Vector<String> aux = new Vector<String>();
 			aux.add("uima.ruta.annotators.SingleLineComment");
 			aux.add("uima.ruta.annotators.MultiLineComment");
-			AnnotatorManager a = new ComposedCTKRutaAnnotatorManager(
-					aux, jcas, c);
-					a.addToCloud();
-	
+			AnnotatorManager a = new ComposedCTKRutaAnnotatorManager(aux, jcas, c);
+			a.addToCloud();
 		}
 
 		if (selected.get("Classes")) {
@@ -74,12 +69,11 @@ public class ClearTKCloudController implements CloudController {
 					"uima.ruta.annotators.Import", jcas, c);
 			a.addToCloud();
 		}
-		System.out.println("fin");
 		return c;
 	}
-	
-	public void executeNLP() throws IOException, UIMAException
-	{ String targetFileStr;
+
+	public void executeNLP() throws IOException, UIMAException {
+		String targetFileStr;
 		targetFileStr = IOUtils.toString(fisTargetFile, "UTF-8");
 		NLPAnalyzer nlp = new ClearTKProcessor(targetFileStr);
 		jcas = nlp.executeNLP();
@@ -87,11 +81,10 @@ public class ClearTKCloudController implements CloudController {
 
 	@Override
 	public void run() {
-		
+
 		try {
 			this.executeNLP();
 		} catch (UIMAException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		cdl.countDown();

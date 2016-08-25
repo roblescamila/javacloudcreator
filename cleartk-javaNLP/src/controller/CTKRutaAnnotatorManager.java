@@ -11,8 +11,6 @@ import org.mcavallo.opencloud.Cloud;
 
 public abstract class CTKRutaAnnotatorManager implements AnnotatorManager {
 
-	// boolean selected;
-
 	JCas jcas;
 	Cloud cloud;
 

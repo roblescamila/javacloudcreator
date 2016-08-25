@@ -6,16 +6,15 @@ import org.mcavallo.opencloud.Cloud;
 
 public class SimpleCTKRutaAnnotatorManager extends CTKRutaAnnotatorManager {
 
-	// boolean selected;
 	String classPath;
-	
+
 	public SimpleCTKRutaAnnotatorManager(String path, JCas cas, Cloud c) {
 		classPath = path;
 		jcas = cas;
 		cloud = c;
 	}
 
-	public void addToCloud()  {
+	public void addToCloud() {
 		try {
 			super.addToCloud(classPath);
 		} catch (CASException e) {
