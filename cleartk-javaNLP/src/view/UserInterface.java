@@ -13,6 +13,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -25,6 +26,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.Box;
 import javax.swing.JRadioButton;
@@ -124,6 +126,20 @@ public class UserInterface extends JFrame {
 		return spinner;
 	}
 
+	public void failmessage() {
+
+		JLabel label = new JLabel("FAIL...");
+		label.setOpaque(false);
+		label.setFont(label.getFont().deriveFont(100));
+		label.setForeground(Color.BLACK);
+		label.setBackground(Color.BLACK);
+		panel.removeAll();
+		panel.repaint();
+		panel.add(label);
+		panel.revalidate();
+		panel.repaint();
+	}
+
 	public void paintCloud() throws IOException {
 		panel.removeAll();
 		panel.repaint();
@@ -133,25 +149,6 @@ public class UserInterface extends JFrame {
 		for (Tag a : cloud.tags()) {
 			aux.addTag(a);
 		}
-
-		filteredWords.add("\"");
-		filteredWords.add("/");
-		filteredWords.add("{");
-		filteredWords.add("}");
-		filteredWords.add("-");
-		filteredWords.add("+");
-		filteredWords.add("*");
-		filteredWords.add("&");
-		filteredWords.add("|");
-		filteredWords.add(">");
-		filteredWords.add("<");
-		filteredWords.add("=");
-		filteredWords.add("[");
-		filteredWords.add("]");
-		filteredWords.add("!");
-		filteredWords.add(":");
-		filteredWords.add(";");
-
 		for (String remove : filteredWords) {
 			aux.removeTag(remove);
 		}
@@ -162,17 +159,19 @@ public class UserInterface extends JFrame {
 				label.setOpaque(false);
 				label.setFont(label.getFont().deriveFont(
 						(float) tag.getWeight() * slider.getValue()));
-				setColor(i, label);
+
 				panel.add(label);
 				i++;
 			}
 		}
 		panel.revalidate();
 		panel.repaint();
+
 	}
 
 	private DefaultMutableTreeNode addNodes(DefaultMutableTreeNode curTop,
 			MyFile dir) {
+
 		String curPath = dir.getPath();
 		DefaultMutableTreeNode curDir = new DefaultMutableTreeNode(curPath);
 		if (curTop != null) {
@@ -205,7 +204,7 @@ public class UserInterface extends JFrame {
 	public static String createFilePath(TreePath treePath) {
 		StringBuilder sb = new StringBuilder();
 		Object[] nodes = treePath.getPath();
-		for (int i = 0; i < nodes.length; i++) {
+		for (int i = nodes.length-2; i < nodes.length; i++) {
 			sb.append(nodes[i].toString()).append(File.separatorChar);
 		}
 		return sb.toString().substring(0, sb.toString().length() - 1);
@@ -278,10 +277,14 @@ public class UserInterface extends JFrame {
 				FileNameExtensionFilter filtro = new FileNameExtensionFilter(
 						"*.PNG", "*.png");
 				fcs.setFileFilter(filtro);
+				// fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				BufferedImage image = createImage(panel);
 				String ruta;
+				// fc.showSaveDialog(frame3);
 				int seleccion = fcs.showSaveDialog(saveFileDialog);
+
 				if (seleccion == fcs.APPROVE_OPTION) {
+
 					File file = new File(fcs.getSelectedFile() + ".png");
 					try {
 						ImageIO.write(image, "png", file);
@@ -554,7 +557,7 @@ public class UserInterface extends JFrame {
 				// protected Void doInBackground() throws UIMAException,
 				// SAXException {
 				//
-
+             
 				Hashtable<String, Boolean> selected = new Hashtable<String, Boolean>();
 				selected.put("Comments", rdbtnComments.isSelected());
 				selected.put("Classes", rdbtnClasses.isSelected());
@@ -562,7 +565,12 @@ public class UserInterface extends JFrame {
 				selected.put("Packages", rdbtnPackages.isSelected());
 				selected.put("Imports", rdbtnImports.isSelected());
 				selected.put("Methods", rdbtnMethod.isSelected());
-				try {
+				System.out.println(selected.containsValue(true));  
+				if (selected.containsValue(true))
+					
+				{
+					try {
+						failmessage();
 					CountDownLatch barrier = new CountDownLatch(tree
 							.getSelectionPaths().length);
 					runBackgroundNlp(selected, wccs, barrier);
@@ -587,7 +595,7 @@ public class UserInterface extends JFrame {
 				// worker.execute();
 				// dialog.setVisible(true); // will block but with a responsive
 				// GUI
-			}
+				}}
 		});
 
 		mntmResetCloud.addActionListener(new ActionListener() {
@@ -595,12 +603,21 @@ public class UserInterface extends JFrame {
 				cloud.clear();
 				panel.removeAll();
 				panel.repaint();
+
 			}
 		});
 	}
 
 	private boolean allFalse(Hashtable<String, Boolean> selected) {
 		boolean a = selected.containsValue(true);
+		if (!a)
+		{
+			System.out.println("son todos falsos");
+		}
+		else
+		{
+			System.out.println("no son todos falsos");
+		}
 		return !a;
 
 	}
@@ -609,7 +626,9 @@ public class UserInterface extends JFrame {
 			Vector<CloudController> wccs, CountDownLatch barrier)
 			throws UIMAException, IOException {
 		TreePath[] tpVector = tree.getSelectionPaths();
-		if (!this.allFalse(selected)) {
+		
+
+	
 			Runnable thobjects[] = new Runnable[tpVector.length];
 			Executor pool = Executors.newFixedThreadPool(tpVector.length);
 			for (int i = 0; i < tpVector.length; i++) {
@@ -618,7 +637,7 @@ public class UserInterface extends JFrame {
 				wccs.add(wcc);
 				thobjects[i] = wcc;
 				pool.execute(thobjects[i]);
-			}
+			
 		}
 	}
 
