@@ -7,7 +7,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 import java.util.concurrent.CountDownLatch;
 
-import model.ClearTKProcessor;
+import model.EnglishClearTKProcessor;
 import model.NLPAnalyzer;
 
 import org.apache.commons.io.IOUtils;
@@ -75,13 +75,12 @@ public class ClearTKCloudController implements CloudController {
 	public void executeNLP() throws IOException, UIMAException {
 		String targetFileStr;
 		targetFileStr = IOUtils.toString(fisTargetFile, "UTF-8");
-		NLPAnalyzer nlp = new ClearTKProcessor(targetFileStr);
+		NLPAnalyzer nlp = new EnglishClearTKProcessor(targetFileStr);
 		jcas = nlp.executeNLP();
 	}
 
 	@Override
 	public void run() {
-
 		try {
 			this.executeNLP();
 		} catch (UIMAException | IOException e) {

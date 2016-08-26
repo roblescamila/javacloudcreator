@@ -23,11 +23,11 @@ import org.uimafit.factory.JCasFactory;
 import org.uimafit.pipeline.SimplePipeline;
 import org.uimafit.util.JCasUtil;
 
-public class ClearTKProcessor implements NLPAnalyzer {
+public class EnglishClearTKProcessor implements NLPAnalyzer {
 
 	private String file;
 
-	public ClearTKProcessor(String f) {
+	public EnglishClearTKProcessor(String f) {
 		file = f;
 	}
 
