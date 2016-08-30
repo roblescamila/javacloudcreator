@@ -159,7 +159,7 @@ public class UserInterface extends JFrame {
 				label.setOpaque(false);
 				label.setFont(label.getFont().deriveFont(
 						(float) tag.getWeight() * slider.getValue()));
-
+				setColor(i, label);
 				panel.add(label);
 				i++;
 			}
@@ -204,7 +204,7 @@ public class UserInterface extends JFrame {
 	public static String createFilePath(TreePath treePath) {
 		StringBuilder sb = new StringBuilder();
 		Object[] nodes = treePath.getPath();
-		for (int i = nodes.length-2; i < nodes.length; i++) {
+		for (int i = nodes.length - 2; i < nodes.length; i++) {
 			sb.append(nodes[i].toString()).append(File.separatorChar);
 		}
 		return sb.toString().substring(0, sb.toString().length() - 1);
@@ -557,7 +557,7 @@ public class UserInterface extends JFrame {
 				// protected Void doInBackground() throws UIMAException,
 				// SAXException {
 				//
-             
+
 				Hashtable<String, Boolean> selected = new Hashtable<String, Boolean>();
 				selected.put("Comments", rdbtnComments.isSelected());
 				selected.put("Classes", rdbtnClasses.isSelected());
@@ -565,37 +565,39 @@ public class UserInterface extends JFrame {
 				selected.put("Packages", rdbtnPackages.isSelected());
 				selected.put("Imports", rdbtnImports.isSelected());
 				selected.put("Methods", rdbtnMethod.isSelected());
-				System.out.println(selected.containsValue(true));  
+				System.out.println(selected.containsValue(true));
 				if (selected.containsValue(true))
-					
+
 				{
 					try {
 						failmessage();
-					CountDownLatch barrier = new CountDownLatch(tree
-							.getSelectionPaths().length);
-					runBackgroundNlp(selected, wccs, barrier);
-					barrier.await();
-					createCloud(wccs, selected);
-					paintCloud();
-				} catch (CASException | InterruptedException e) {
-					e.printStackTrace();
-				} catch (UIMAException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+						CountDownLatch barrier = new CountDownLatch(tree
+								.getSelectionPaths().length);
+						runBackgroundNlp(selected, wccs, barrier);
+						barrier.await();
+						createCloud(wccs, selected);
+						paintCloud();
+					} catch (CASException | InterruptedException e) {
+						e.printStackTrace();
+					} catch (UIMAException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					// return null;
+					// }
+					//
+					// @Override
+					// protected void done() {
+					// dialog.dispose();
+					// }
+					// };
+					// worker.execute();
+					// dialog.setVisible(true); // will block but with a
+					// responsive
+					// GUI
 				}
-				// return null;
-				// }
-				//
-				// @Override
-				// protected void done() {
-				// dialog.dispose();
-				// }
-				// };
-				// worker.execute();
-				// dialog.setVisible(true); // will block but with a responsive
-				// GUI
-				}}
+			}
 		});
 
 		mntmResetCloud.addActionListener(new ActionListener() {
@@ -610,12 +612,9 @@ public class UserInterface extends JFrame {
 
 	private boolean allFalse(Hashtable<String, Boolean> selected) {
 		boolean a = selected.containsValue(true);
-		if (!a)
-		{
+		if (!a) {
 			System.out.println("son todos falsos");
-		}
-		else
-		{
+		} else {
 			System.out.println("no son todos falsos");
 		}
 		return !a;
@@ -626,18 +625,16 @@ public class UserInterface extends JFrame {
 			Vector<CloudController> wccs, CountDownLatch barrier)
 			throws UIMAException, IOException {
 		TreePath[] tpVector = tree.getSelectionPaths();
-		
 
-	
-			Runnable thobjects[] = new Runnable[tpVector.length];
-			Executor pool = Executors.newFixedThreadPool(tpVector.length);
-			for (int i = 0; i < tpVector.length; i++) {
-				String f = createFilePath(tpVector[i]);
-				wcc = new ClearTKCloudController(f, barrier);
-				wccs.add(wcc);
-				thobjects[i] = wcc;
-				pool.execute(thobjects[i]);
-			
+		Runnable thobjects[] = new Runnable[tpVector.length];
+		Executor pool = Executors.newFixedThreadPool(tpVector.length);
+		for (int i = 0; i < tpVector.length; i++) {
+			String f = createFilePath(tpVector[i]);
+			wcc = new ClearTKCloudController(f, barrier);
+			wccs.add(wcc);
+			thobjects[i] = wcc;
+			pool.execute(thobjects[i]);
+
 		}
 	}
 
