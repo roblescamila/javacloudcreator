@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.annotators.BlockTypeSystem</name>
+    <imports>
+        <import name="org.apache.uima.ruta.engine.BasicTypeSystem"/>
+        <import name="uima.ruta.annotators.JavaTypeSystem"/>
+    </imports>
+    <types>
+        <typeDescription>
+            <name>uima.ruta.annotators.Block.SubBlock</name>
+            <description>Type defined in uima.ruta.annotators.Block</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.annotators.Block.EndBlock</name>
+            <description>Type defined in uima.ruta.annotators.Block</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.annotators.Block.InitBlock</name>
+            <description>Type defined in uima.ruta.annotators.Block</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+    </types>
+</typeSystemDescription>

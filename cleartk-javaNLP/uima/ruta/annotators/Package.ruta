@@ -1,0 +1,7 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+Document{-> RETAINTYPE(SPACE)};
+
+W{REGEXP("package")} SPACE ANY*?{-> MARK(Package)} SEMICOLON;

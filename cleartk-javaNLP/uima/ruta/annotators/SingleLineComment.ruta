@@ -1,0 +1,11 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+DECLARE InitComment;
+
+"(\\/\\/)*"->InitComment;
+
+Document{-> RETAINTYPE(BREAK)};
+
+InitComment ANY*?{-> MARK(SingleLineComment)} BREAK;

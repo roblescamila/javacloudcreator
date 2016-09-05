@@ -1,0 +1,5 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+ 
+W{REGEXP("implements")} CW*{-> MARK(Implementation,1,2)};

@@ -1,0 +1,11 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+AccessModifier ClassName Inheritance Implementation {-> MARK(ClassHeader,1,4)};
+
+AccessModifier ClassName {-PARTOFNEQ(ClassHeader)-> MARK(ClassHeader,1,2)};
+
+AccessModifier ClassName Inheritance{-PARTOFNEQ(ClassHeader)-> MARK(ClassHeader,1,3)};
+
+AccessModifier ClassName Implementation {-PARTOFNEQ(ClassHeader)-> MARK(ClassHeader,1,3)};

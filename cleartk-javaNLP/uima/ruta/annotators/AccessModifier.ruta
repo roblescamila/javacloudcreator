@@ -1,0 +1,7 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+WORDLIST AccessModifiersList = 'AccessModifiers.txt';
+
+Document{-> MARKFAST(AccessModifier, AccessModifiersList)};

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.annotators.MainTypeSystem</name>
+    <imports>
+        <import name="org.apache.uima.ruta.engine.BasicTypeSystem"/>
+        <import name="uima.ruta.annotators.JavaTypeSystem"/>
+        <import name="uima.ruta.annotators.PackageTypeSystem"/>
+        <import name="uima.ruta.annotators.MultiLineCommentTypeSystem"/>
+        <import name="uima.ruta.annotators.InheritanceTypeSystem"/>
+        <import name="uima.ruta.annotators.ConstructorTypeSystem"/>
+        <import name="uima.ruta.annotators.MethodNameTypeSystem"/>
+        <import name="uima.ruta.annotators.ClassTypeTypeSystem"/>
+        <import name="uima.ruta.annotators.AccessModifierTypeSystem"/>
+        <import name="uima.ruta.annotators.MethodHeaderTypeSystem"/>
+        <import name="uima.ruta.annotators.ClassTypeSystem"/>
+        <import name="uima.ruta.annotators.ImplementationTypeSystem"/>
+        <import name="uima.ruta.annotators.BlockTypeSystem"/>
+        <import name="uima.ruta.annotators.PrimitiveTypeTypeSystem"/>
+        <import name="uima.ruta.annotators.ClassHeaderTypeSystem"/>
+        <import name="uima.ruta.annotators.SingleLineCommentTypeSystem"/>
+        <import name="uima.ruta.annotators.ClassNameTypeSystem"/>
+        <import name="uima.ruta.annotators.ParametersTypeSystem"/>
+        <import name="uima.ruta.annotators.DeclarationTypeSystem"/>
+        <import name="uima.ruta.annotators.ImportTypeSystem"/>
+        <import name="uima.ruta.annotators.JavaReservedWordsTypeSystem"/>
+        <import name="uima.ruta.annotators.MethodTypeSystem"/>
+        <import name="uima.ruta.annotators.VarNameTypeSystem"/>
+    </imports>
+</typeSystemDescription>

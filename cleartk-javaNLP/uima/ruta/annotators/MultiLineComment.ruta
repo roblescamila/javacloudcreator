@@ -1,0 +1,12 @@
+PACKAGE uima.ruta.annotators;
+
+TYPESYSTEM types.JavaTypeSystem;
+
+DECLARE IniComment,EndComment;
+
+"(\\/\\*)*"->IniComment;
+"(\\*\\/)*"->EndComment;
+
+IniComment ANY*?{-> MARK(MultiLineComment)} EndComment;
+
+//(IniComment ANY*? EndComment){-> MARK(MultiLineComment,1,3)};
